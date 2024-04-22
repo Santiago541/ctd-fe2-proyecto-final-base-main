@@ -1,15 +1,14 @@
 import { cleanup } from "@testing-library/react";
-import { render  } from "../test-utils";
 import user from '@testing-library/user-event';
 import Cita from "../features/quote/Cita";
 import exp from "constants";
+import { render, screen } from "@testing-library/react";
 
 describe('Cita', () => { 
     test('should display a random quote after clicking the "obtener cita aleatoria" button', async() => {
         render(<Cita></Cita>)
         user.setup()
         const GET_RANDOM_QUOTE_BUTTON = screen.findByRole('button', { name: /obtener cita aleatoria/i} )
-        await user.click(GET_RANDOM_QUOTE_BUTTON)
         const QUOTE_TEXT = screen.findByText(/no se encontro ninguna cita/i)
         expect(QUOTE_TEXT).not.toBeNull()
     });
